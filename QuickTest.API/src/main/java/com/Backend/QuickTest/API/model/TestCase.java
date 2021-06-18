@@ -29,4 +29,9 @@ public class TestCase {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "TestId")
     private List<TestStep> steps;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "TestId")
+    private List<TestReport> testReports;
+
 }
