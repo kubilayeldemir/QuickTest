@@ -1,5 +1,6 @@
 package com.Backend.QuickTest.API.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +33,7 @@ public class TestCase {
     @JoinColumn(name = "TestId")
     private List<TestStep> steps;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "TestId")
+    @OneToMany(mappedBy = "testCase",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<TestReport> testReports;
 }

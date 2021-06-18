@@ -1,5 +1,6 @@
 package com.Backend.QuickTest.API.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +40,15 @@ public class TestReport {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date testEndDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ReportId")
     private List<TestReportStep> testSteps;
+
+    @ManyToOne
+    @JoinColumn(name = "TestId", nullable = false,insertable = false, updatable = false)
+    @JsonIgnore
+    private TestCase testCase;
+
+    @Column(name = "TestId")
+    private Long testcaseId;
 }
