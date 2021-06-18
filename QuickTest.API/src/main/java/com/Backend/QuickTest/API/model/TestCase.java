@@ -1,5 +1,6 @@
 package com.Backend.QuickTest.API.model;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,21 +10,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="TESTCASE")
+@Table(name = "TESTCASE")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value = "Testcase Api model documentation", description = "Model")
 public class TestCase {
     @Id
-    @Column(name="TestId")
+    @Column(name = "TestId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="testName")
+    @Column(name = "testName")
     private String testName;
 
-    @Column(name="websiteAddress")
+    @Column(name = "websiteAddress")
     private String websiteAddress;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -33,5 +35,4 @@ public class TestCase {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "TestId")
     private List<TestReport> testReports;
-
 }

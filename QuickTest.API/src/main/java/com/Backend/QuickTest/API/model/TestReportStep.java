@@ -11,33 +11,31 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="TestReportStep")
+@Table(name = "TestReportStep")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TestReportStep {
     @Id
-    @Column(name="StepResultId")
+    @Column(name = "StepResultId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long reportStepId;
 
-    @Column(name="stepDescription")
+    @Column(name = "stepDescription")
     private String stepDescription;
 
     @NotNull
-    @Column(name="stepNumber")
+    @Column(name = "stepNumber")
     private int stepNumber;
 
-    @Column(name="status")
+    @Column(name = "status")
     private boolean status;
 
-    @Column(name="stepImageUrl")
+    @Column(name = "stepImageUrl")
     private String stepImageUrl;
 
-    @Column(name="stepDate")
+    @Column(name = "stepDate")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date stepDate;
 }
-
-

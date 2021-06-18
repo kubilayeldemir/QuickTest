@@ -11,31 +11,31 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="TestReport")
+@Table(name = "TestReport")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TestReport {
     @Id
-    @Column(name="ReportId")
+    @Column(name = "ReportId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long reportId;
 
-    @Column(name="status")
+    @Column(name = "status")
     private boolean status;
 
-    @Column(name="errorMessage")
+    @Column(name = "errorMessage")
     private String errorMessage;
 
-    @Column(name="logFileURL")
+    @Column(name = "logFileURL")
     private String logFileURL;
 
-    @Column(name="testStartDate")
+    @Column(name = "testStartDate")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date testStartDate;
 
-    @Column(name="testEndDate")
+    @Column(name = "testEndDate")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date testEndDate;
 

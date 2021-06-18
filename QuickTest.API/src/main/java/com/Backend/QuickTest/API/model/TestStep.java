@@ -12,33 +12,33 @@ import org.springframework.core.annotation.Order;
 import javax.persistence.*;
 
 @Entity
-@Table(name="TestStep")
+@Table(name = "TestStep")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TestStep {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
-    @Column(name="stepNumber")
+    @Column(name = "stepNumber")
     private int stepNumber;
 
-    @Column(name="elementAddress")
+    @Column(name = "elementAddress")
     private String elementAddress;
 
     @NotNull
-    @Column(name="FindElementBy")
+    @Column(name = "FindElementBy")
     @Enumerated(EnumType.STRING)
     private FindElementBy by;
 
-    @Column(name="Action")
+    @Column(name = "Action")
     @Enumerated(EnumType.STRING)
     private Action action;
 
-    @Column(name="actionText")
+    @Column(name = "actionText")
     private String actionText;
 }
