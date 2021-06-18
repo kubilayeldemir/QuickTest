@@ -21,7 +21,7 @@ public class TestStep {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotNull
     @Column(name="stepNumber")
@@ -39,5 +39,6 @@ public class TestStep {
     @Enumerated(EnumType.STRING)
     private Action action;
 
-
+    @Column(name="actionText")
+    private String actionText;
 }

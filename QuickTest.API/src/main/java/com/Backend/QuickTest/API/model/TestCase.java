@@ -18,14 +18,15 @@ public class TestCase {
     @Id
     @Column(name="TestId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name="testName")
     private String testName;
 
+    @Column(name="websiteAddress")
+    private String websiteAddress;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "TestId")
     private List<TestStep> steps;
-
-
 }

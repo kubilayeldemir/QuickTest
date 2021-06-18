@@ -3,10 +3,7 @@ package com.Backend.QuickTest.API.controller;
 import com.Backend.QuickTest.API.model.TestCase;
 import com.Backend.QuickTest.API.repository.TestcaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +21,13 @@ public class TestcaseController {
         return testcaseRepository.findAll();
     }
 
+    @PostMapping
+    public TestCase saveTestcase(@RequestBody TestCase testCase){
+        return testcaseRepository.save(testCase);
+    }
+
     @GetMapping("/{testId}")
-    public Optional<TestCase> getTestById(@PathVariable long testId){
+    public Optional<TestCase> getTestById(@PathVariable("testId") long testId){
         return testcaseRepository.findById(testId);
     }
 }
