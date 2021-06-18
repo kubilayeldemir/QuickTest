@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/testreport")
-@Api(value = "TestReport documentation")
+//@RestController
+//@RequestMapping("/api/testreport")
+//@Api(value = "TestReport documentation")
 public class TestReportController {
     private TestReportRepository testReportRepository;
 
@@ -27,15 +27,5 @@ public class TestReportController {
     @PostMapping
     public TestReport saveReport(@RequestBody TestReport testReport) {
         return testReportRepository.save(testReport);
-    }
-
-    /*@GetMapping("/{reportId}")
-    public Optional<TestReport> getReportById(@PathVariable("reportId") long reportId) {
-        return testReportRepository.findById(reportId);
-    }*/
-
-    @GetMapping("/{testCaseId}")
-    public List<TestReport> getReportById(@PathVariable("testCaseId") long testCaseId) {
-        return testReportRepository.findBytestcaseId(testCaseId);
     }
 }
