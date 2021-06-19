@@ -1,6 +1,7 @@
 ﻿using DataAccess.Interfaces;
 using DataAccess.Models;
 using DataAccess.Models.Enums;
+using DataAccess.Repositories;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -12,15 +13,20 @@ using System.Threading.Tasks;
 namespace QuickTest.SeleniumDriver.SeleniumEngine
 {
     public class TestRunner:ITestRunner
-    {
-        private readonly ITestcaseRepository testcaseRepository;
-        public TestRunner(ITestcaseRepository testcaseRepository)
+    {        
+        private void RunTestStep(IWebDriver driver, Step step)
         {
-            this.testcaseRepository = testcaseRepository;
+
         }
-        public  String RunTest(Testcase testCase)
+        public  TestReport RunTest(Testcase testCase)
         {
             var driver = new ChromeDriver();
+
+            var testReport = new TestReport();
+            testReport.testcaseId = testCase.id;
+            testReport.status = false;
+            testReport.testStartDate = DateTime.Now;
+
             
             foreach(Step step in testCase.steps)
             {
@@ -41,12 +47,13 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
                         }
                         driver.FindElement(by).Click();
                         break;
-
                 }
             }
-            Thread.Sleep(11000);
+            Thread.Sleep(5000);
+            testReport.testEndDate = DateTime.Now;
+            testReport.status = true;
             driver.Quit();
-            return "";
+            return testReport;
         }
     }
 }

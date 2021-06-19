@@ -1,4 +1,6 @@
 ﻿using DataAccess.Interfaces;
+using DataAccess.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,25 +26,20 @@ namespace DataAccess.Utilities
 
         public async Task<T> GetAsync<T>(string endpoint)
         {
-            var resp = await _httpClient.GetAsync(endpoint);
-            return await resp.Content.ReadAsAsync<T>();
+            var res = await _httpClient.GetAsync(endpoint);
+            return await res.Content.ReadAsAsync<T>();
         }
 
-        public Task<T> PostAsync<T>(string endpoint, object body)
+        public async Task<T> PostAsync<T>(string endpoint, object body)
         {
-            throw new NotImplementedException();
+            var httpContent =
+                new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+            var res = await _httpClient.PostAsync(endpoint, httpContent);
+            return await res.Content.ReadAsAsync<T>();
         }
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-        }
-        public static string GetQueryString(object obj)
-        {
-            var properties = from p in obj.GetType().GetProperties()
-                             where p.GetValue(obj, null) != null
-                             select p.Name + "=" + HttpUtility.UrlEncode(p.GetValue(obj, null).ToString());
-
-            return string.Join("&", properties.ToArray());
-        }
+        }        
     }
 }

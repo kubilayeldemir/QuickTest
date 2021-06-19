@@ -21,6 +21,7 @@ namespace QuickTest.SeleniumDriver
             .AddTransient<IClient, Client>()
             .AddSingleton<HttpClient>()
             .AddScoped<ITestcaseRepository,TestcaseRepository>()
+            .AddScoped<ITestReportRepository, TestReportRepository>()
             .AddSingleton<ITestRunner,TestRunner>()
             .AddScoped<ITestSchedular,TestSchedular>()
             .BuildServiceProvider();
