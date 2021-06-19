@@ -7,7 +7,7 @@ namespace DataAccess.Models
 {
     public class Step
     {
-        public Enums.Action action { get; set; }
+        public TestAction action { get; set; }
         public string actionText { get; set; }
         public FindElementBy by { get; set; }
         public string elementAddress { get; set; }

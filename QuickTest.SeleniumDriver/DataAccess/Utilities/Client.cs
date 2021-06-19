@@ -28,7 +28,7 @@ namespace DataAccess.Utilities
             return await resp.Content.ReadAsAsync<T>();
         }
 
-        public Task<T> PostAsync<T>(string endpoint, object content)
+        public Task<T> PostAsync<T>(string endpoint, object body)
         {
             throw new NotImplementedException();
         }

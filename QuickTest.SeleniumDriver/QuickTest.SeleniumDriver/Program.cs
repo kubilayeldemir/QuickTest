@@ -8,6 +8,7 @@ using DataAccess.Models;
 using System.Collections.Generic;
 using DataAccess.Repositories;
 using QuickTest.SeleniumDriver.SeleniumEngine;
+using QuickTest.SeleniumDriver.SeleniumEngine.Interfaces;
 
 namespace QuickTest.SeleniumDriver
 {
@@ -21,6 +22,7 @@ namespace QuickTest.SeleniumDriver
             .AddSingleton<HttpClient>()
             .AddScoped<ITestcaseRepository,TestcaseRepository>()
             .AddSingleton<ITestRunner,TestRunner>()
+            .AddScoped<ITestSchedular,TestSchedular>()
             .BuildServiceProvider();
 
             //var cls = ActivatorUtilities.CreateInstance<Client>(serviceProvider);
@@ -29,9 +31,10 @@ namespace QuickTest.SeleniumDriver
             //var repo = ActivatorUtilities.CreateInstance<TestcaseRepository>(serviceProvider);
             //var data = await repo.GetAllTestcases();
 
-            var tr = ActivatorUtilities.CreateInstance<TestRunner>(serviceProvider);
-            Console.WriteLine(await tr.RunTestAsync());
-
+            //var tr = ActivatorUtilities.CreateInstance<TestRunner>(serviceProvider);
+            //Console.WriteLine(await tr.RunTestAsync());
+            var testSchedular = ActivatorUtilities.CreateInstance<TestSchedular>(serviceProvider);
+            await testSchedular.GetAndRunFirstTestAsync();
             //var httpClient = new HttpClient();
             //var cl = new Client(httpClient);
             //var data = await cl.GetAsync<List<Testcase>>("testcase");
@@ -42,7 +45,6 @@ namespace QuickTest.SeleniumDriver
             //var content = response.Content;
             //var data = await content.ReadAsAsync<List<Testcase>>();
             //Console.WriteLine(data);
-
         }
     }
 }

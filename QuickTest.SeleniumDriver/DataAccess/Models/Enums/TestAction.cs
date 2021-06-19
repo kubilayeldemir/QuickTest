@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccess.Models.Enums
 {
-    public enum Action
+    public enum TestAction
     {
         SendText,
         Click,
