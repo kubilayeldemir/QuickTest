@@ -13,5 +13,11 @@ namespace DataAccess.Models
         public string elementAddress { get; set; }
         public long id { get; set; }
         public int stepNumber { get; set; }
+        public override String ToString()
+        {
+            return action.ToString() + " Element address:" + elementAddress +
+                " findElementBy:" + by.ToString() + " Action text:" + actionText +
+                "Step number:" + stepNumber+" id:"+id;
+        }
     }
 }

@@ -3,7 +3,6 @@ using DataAccess.Models;
 using DataAccess.Models.Enums;
 using DataAccess.Repositories;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,9 +19,11 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
         }
         public  TestReport RunTest(Testcase testCase)
         {
-            var driver = new ChromeDriver();
+            
+            var driver = new DriverFactory().createWebDriver();
 
             var testReport = new TestReport();
+            testReport.testSteps = new List<ReportStep>();
             testReport.testcaseId = testCase.id;
             testReport.status = false;
             testReport.testStartDate = DateTime.Now;
@@ -30,6 +31,11 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
             
             foreach(Step step in testCase.steps)
             {
+                var testStep = new ReportStep();
+                testStep.stepNumber = step.stepNumber;
+                testStep.status = false;
+                testStep.stepDate = DateTime.Now;
+                testStep.stepDescription = step.ToString();
                 switch(step.action)
                 {
                     case TestAction.GoTo:
@@ -41,13 +47,35 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
                         {
                             by = By.ClassName(step.elementAddress);
                         }
+                        else if(step.by == FindElementBy.Xpath)
+                        {
+                            by = By.XPath(step.elementAddress);
+                        }
                         else
                         {
                             by = By.Id(step.elementAddress);
                         }
                         driver.FindElement(by).Click();
                         break;
+                    case TestAction.SendText:
+                        if (step.by == FindElementBy.ClassName)
+                        {
+                            by = By.ClassName(step.elementAddress);
+                        }
+                        else if (step.by == FindElementBy.Xpath)
+                        {
+                            by = By.XPath(step.elementAddress);
+                        }
+                        else
+                        {
+                            by = By.Id(step.elementAddress);
+                        }
+                        driver.FindElement(by).SendKeys(step.actionText);
+                        break;
                 }
+                testStep.status = true;
+                testReport.testSteps.Add(testStep);
+                Thread.Sleep(1000);
             }
             Thread.Sleep(5000);
             testReport.testEndDate = DateTime.Now;

@@ -9,6 +9,5 @@ namespace DataAccess.Interfaces
     {
         public Task<T> GetAsync<T>(string endpoint);
         public Task<T> PostAsync<T>(string endpoint, object body);
-
     }
 }
