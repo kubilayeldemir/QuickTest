@@ -1,5 +1,6 @@
 package com.Backend.QuickTest.API.model;
 
+import com.Backend.QuickTest.API.model.enums.TimeCycle;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,17 @@ public class TestCase {
     @JoinColumn(name = "TestId")
     private List<TestStep> steps;
 
-    @OneToMany(mappedBy = "testCase",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "testCase", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<TestReport> testReports;
+
+    @Column(name = "critical")
+    private boolean critical;
+
+    @Column(name = "activity")
+    private boolean active;
+
+    @Column(name = "cycleTimingByMinutes")
+    @Enumerated(EnumType.STRING)
+    private TimeCycle cycleTimingByMinutes;
 }
