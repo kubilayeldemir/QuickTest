@@ -7,6 +7,6 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine.Interfaces
 {
     public interface ITestSchedular
     {
-        public Task GetAndRunFirstTestAsync();
+        public Task GetAndRunATestAsync();
     }
 }

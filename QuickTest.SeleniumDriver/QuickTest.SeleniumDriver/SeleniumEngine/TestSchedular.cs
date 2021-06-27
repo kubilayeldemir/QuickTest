@@ -11,21 +11,21 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
     public class TestSchedular: ITestSchedular
     {
         private readonly ITestRunner testRunner;
-        private readonly ITestcaseRepository testcaseRepository;
+        private readonly ITestPoolRepository testPoolRepository;
         private readonly ITestReportRepository testReportRepository;
 
 
-        public TestSchedular(ITestRunner testRunner,ITestcaseRepository testcaseRepository, ITestReportRepository testReportRepository)
+        public TestSchedular(ITestRunner testRunner, ITestPoolRepository testPoolRepository, ITestReportRepository testReportRepository)
         {
-            this.testcaseRepository = testcaseRepository;
+            this.testPoolRepository = testPoolRepository;
             this.testRunner = testRunner;
             this.testReportRepository = testReportRepository;
         }
 
-        public async Task GetAndRunFirstTestAsync()
+        public async Task GetAndRunATestAsync()
         {
-            var testCase = await testcaseRepository.GetAllTestcases();
-            var testResult = testRunner.RunTest(testCase[0]);
+            var testCaseToRun = await testPoolRepository.GetATestcaseFromPool();
+            var testResult = testRunner.RunTest(testCaseToRun);
             var x = await testReportRepository.PostTestReportAsync(testResult);
             Console.WriteLine(x.reportId);
         }
