@@ -1,4 +1,5 @@
-﻿using DataAccess.Interfaces;
+﻿using DataAccess;
+using DataAccess.Interfaces;
 using DataAccess.Models;
 using DataAccess.Models.Enums;
 using DataAccess.Repositories;
@@ -17,7 +18,7 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
         {
 
         }
-        public  TestReport RunTest(Testcase testCase)
+        public async  Task<TestReport> RunTestAsync(Testcase testCase)
         {
             
             var driver = new DriverFactory().createWebDriver();
@@ -74,6 +75,10 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
                         break;
                 }
                 testStep.status = true;
+                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+                string fileName = testCase.testName + DateTime.Now.ToString()+".PNG";
+                string imageLink = await AzureStorageHelper.UploadFileToStorage(fileName, ss.AsByteArray);
+                testStep.stepImageUrl = imageLink;
                 testReport.testSteps.Add(testStep);
                 Thread.Sleep(1000);
             }

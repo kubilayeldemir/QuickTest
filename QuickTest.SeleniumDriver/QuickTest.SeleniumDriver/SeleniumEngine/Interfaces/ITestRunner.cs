@@ -8,6 +8,6 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
 {
     public interface ITestRunner
     {
-        public TestReport RunTest(Testcase testCase);
+        public Task<TestReport> RunTestAsync(Testcase testCase);
     }
 }

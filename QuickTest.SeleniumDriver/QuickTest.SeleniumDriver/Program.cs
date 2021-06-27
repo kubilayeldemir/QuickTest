@@ -4,8 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using DataAccess.Interfaces;
 using System.Threading.Tasks;
-using DataAccess.Models;
-using System.Collections.Generic;
 using DataAccess.Repositories;
 using QuickTest.SeleniumDriver.SeleniumEngine;
 using QuickTest.SeleniumDriver.SeleniumEngine.Interfaces;

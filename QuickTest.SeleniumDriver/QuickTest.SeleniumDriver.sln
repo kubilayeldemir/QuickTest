@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTest.SeleniumDriver", "QuickTest.SeleniumDriver\QuickTest.SeleniumDriver.csproj", "{A8711381-2628-4174-8956-531E8E2C8E53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickTest.SeleniumDriver", "QuickTest.SeleniumDriver\QuickTest.SeleniumDriver.csproj", "{A8711381-2628-4174-8956-531E8E2C8E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{D85537AA-A6DB-4B34-B987-61C6C4B2A9FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{D85537AA-A6DB-4B34-B987-61C6C4B2A9FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,7 +35,7 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
                 Console.WriteLine(e.Message);
                 return;
             }
-            var testResult = testRunner.RunTest(testCaseToRun);
+            var testResult = await testRunner.RunTestAsync(testCaseToRun);
             var x = await testReportRepository.PostTestReportAsync(testResult);
             Console.WriteLine(x.reportId);
         }
