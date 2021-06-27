@@ -1,5 +1,6 @@
 package com.Backend.QuickTest.API.controller;
 
+import com.Backend.QuickTest.API.exception.TestcaseNotFound;
 import com.Backend.QuickTest.API.model.TestCase;
 import com.Backend.QuickTest.API.service.TestPoolService;
 import io.swagger.annotations.Api;
@@ -24,10 +25,9 @@ public class TestPoolController {
     @GetMapping
     public TestCase getOneTestFromPool() {
         var testCase = testPoolService.getOneTestCaseFromPool();
-        if (testCase.isPresent()) {
-            return testCase.get();
+        if (!testCase.isPresent()) {
+            throw new TestcaseNotFound();
         }
-        return null;
+        return testCase.get();
     }
-
 }

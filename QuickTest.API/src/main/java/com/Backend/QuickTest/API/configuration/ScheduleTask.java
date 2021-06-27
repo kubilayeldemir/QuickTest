@@ -37,19 +37,19 @@ public class ScheduleTask {
         return testPoolRepository.saveAll(testPoolList);
     }
 
-    @Scheduled(fixedDelay = 10000L)
+    @Scheduled(fixedDelay = 1000L*60*10)
     public void add10MinTestsToPool() {
         var addedTestsList = addTestsToPoolByTheirTimeCycle(TimeCycle.Every10Min);
         System.out.println("10Min tests added to pool. Number of Test:" + addedTestsList.size() + " Date:" + LocalDateTime.now().toString());
     }
 
-    @Scheduled(fixedDelay = 20000L)
+    @Scheduled(fixedDelay = 1000L*60*30)
     public void add30MinTestsToPool() {
         var addedTestsList = addTestsToPoolByTheirTimeCycle(TimeCycle.Every30Min);
         System.out.println("30Min tests added to pool. Number of Test:" + addedTestsList.size() + " Date:" + LocalDateTime.now().toString());
     }
 
-    @Scheduled(fixedDelay = 20000L)
+    @Scheduled(fixedDelay = 1000L*60*60)
     public void addEveryHourTestsToPool() {
         var addedTestsList = addTestsToPoolByTheirTimeCycle(TimeCycle.EveryHour);
         System.out.println("Every hour tests added to pool. Number of Test:" + addedTestsList.size() + " Date:" + LocalDateTime.now().toString());
