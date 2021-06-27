@@ -1,4 +1,5 @@
 ﻿using DataAccess.Interfaces;
+using DataAccess.Models;
 using DataAccess.Repositories;
 using QuickTest.SeleniumDriver.SeleniumEngine.Interfaces;
 using System;
@@ -24,7 +25,16 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
 
         public async Task GetAndRunATestAsync()
         {
-            var testCaseToRun = await testPoolRepository.GetATestcaseFromPool();
+            Testcase testCaseToRun;
+            try
+            {
+                testCaseToRun = await testPoolRepository.GetATestcaseFromPool();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
             var testResult = testRunner.RunTest(testCaseToRun);
             var x = await testReportRepository.PostTestReportAsync(testResult);
             Console.WriteLine(x.reportId);

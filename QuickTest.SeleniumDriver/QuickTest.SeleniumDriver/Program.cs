@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using DataAccess.Repositories;
 using QuickTest.SeleniumDriver.SeleniumEngine;
 using QuickTest.SeleniumDriver.SeleniumEngine.Interfaces;
+using System.Threading;
 
 namespace QuickTest.SeleniumDriver
 {
@@ -28,8 +29,12 @@ namespace QuickTest.SeleniumDriver
             .BuildServiceProvider();
             
             var testSchedular = ActivatorUtilities.CreateInstance<TestSchedular>(serviceProvider);
-            await testSchedular.GetAndRunATestAsync();
-            
+            while (true)
+            {
+                await testSchedular.GetAndRunATestAsync();
+                Thread.Sleep(1000 * 10);
+            }
+
             Console.WriteLine("end");
         }
     }

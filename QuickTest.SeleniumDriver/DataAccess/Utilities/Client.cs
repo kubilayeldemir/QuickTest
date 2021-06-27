@@ -27,6 +27,10 @@ namespace DataAccess.Utilities
         public async Task<T> GetAsync<T>(string endpoint)
         {
             var res = await _httpClient.GetAsync(endpoint);
+            if (!res.IsSuccessStatusCode)
+            {
+                throw new KeyNotFoundException("Not Found");
+            }
             return await res.Content.ReadAsAsync<T>();
         }
 
