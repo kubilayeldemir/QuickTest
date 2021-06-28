@@ -1,9 +1,6 @@
-﻿using Azure.Storage;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess
@@ -16,7 +13,9 @@ namespace DataAccess
             BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
             BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("quicktestcontainer");
             BlobClient blobClient = containerClient.GetBlobClient(fileName);
-            var x = await blobClient.UploadAsync(BinaryData.FromBytes(image));
+            BlobUploadOptions options = new BlobUploadOptions();
+            options.HttpHeaders = new BlobHttpHeaders() { ContentType = "image/jpeg" };
+            await blobClient.UploadAsync(BinaryData.FromBytes(image), options);
             string imageLink = "https://quicktestimages.blob.core.windows.net/quicktestcontainer/" + fileName;
             return imageLink;
         }
