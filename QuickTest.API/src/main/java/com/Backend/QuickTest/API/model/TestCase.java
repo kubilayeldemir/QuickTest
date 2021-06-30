@@ -39,10 +39,10 @@ public class TestCase {
     private List<TestReport> testReports;
 
     @Column(name = "critical")
-    private boolean critical;
+    private Boolean critical;
 
     @Column(name = "activity")
-    private boolean active;
+    private Boolean active;
 
     @Column(name = "cycleTimingByMinutes")
     @Enumerated(EnumType.STRING)
