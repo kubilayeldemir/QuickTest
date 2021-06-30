@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import Router from 'vue-router'
 import {routes} from "@/utils/routes";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(Router);
 
