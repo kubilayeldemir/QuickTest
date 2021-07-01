@@ -7,7 +7,8 @@ import {api} from "@/utils/api"
 Vue.use(Vuex);
 
 const state={
-    testcases:{}
+    testcases:{},
+    reports:[]
 };
 
  const getters = {
@@ -16,6 +17,9 @@ const state={
  const mutations ={
      setTestcases(state,testcases){
          state.testcases = testcases;
+     },
+     setReports(state,reports){
+       state.reports = reports
      }
  };
 
@@ -23,7 +27,10 @@ const state={
      async getTestcases({commit}){
          const {data} = await api.get("testcase");
          commit("setTestcases",data);
-
+     },
+     async getReportsOfTestcase({commit},testcaseId){
+        const {data} = await api.get(`testcase/reports/${testcaseId}`);
+        commit("setReports",data);
      }
  };
 

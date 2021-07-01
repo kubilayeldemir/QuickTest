@@ -1,6 +1,6 @@
 <script>
 import {mapState} from 'vuex'
-import TestCase from "@/components/TestCase";
+import TestCase from "@/components/TestCaseCard";
 export default {
   name: "TestCasePanel",
   components: {TestCase},
@@ -35,6 +35,5 @@ export default {
     <div v-for="testcase in testcases" :key="testcase.id" class="col-12 col-lg-3">
       <test-case :test-case="testcase"></test-case></div>
   </div>
-  <button type="button" class="btn btn-primary">Primary</button>
 </div>
 </template>

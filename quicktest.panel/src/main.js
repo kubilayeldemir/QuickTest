@@ -6,6 +6,8 @@ import {routes} from "@/utils/routes";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(Router);
+Vue.use(require('vue-moment'));
+
 
 const router = new Router({
   mode: 'history',
