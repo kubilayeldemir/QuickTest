@@ -17,7 +17,7 @@
           <li>{{ testcase.steps.length }} Steps</li>
         </ul>
         <div class="row">
-          <router-link :to="{name:'ReportsPage',params:{}}">
+          <router-link :to="{name:'TestCasePage',params:{testcase:testcase}}">
             <button class="w-100 mb-1 btn btn-sm btn-outline-primary" type="button">Testcase</button>
           </router-link>
           <router-link :to="{name:'ReportsPage',params:{testcase:testcase}}">

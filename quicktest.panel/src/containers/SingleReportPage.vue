@@ -39,7 +39,7 @@ export default {
 <template>
   <div class="container text-center">
     <div class="row mt-3">
-      <div class="col-lg-6 offset-md-3">
+      <div class="col-lg-6 offset-lg-3">
         <div class="text-center">
           <h1>Test Report of {{ testcase.testName }}</h1>
         </div>

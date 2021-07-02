@@ -15,7 +15,8 @@
               <h5 class="card-title">{{ step.status ? 'Step Passed' : 'Step Failed' }}</h5>
               <p style="cursor: pointer" @click="toggleDescription=!toggleDescription">
                 {{ toggleDescription ? "Close" : "Open" }} Test Description</p>
-              <p v-if="toggleDescription" class="card-text" style="font-size: 0.8em; color: black">{{ step.stepDescription }}</p>
+              <p v-if="toggleDescription" class="card-text" style="font-size: 0.8em; color: black">
+                {{ step.stepDescription }}</p>
             </div>
             <div class="col-md-4">
               <span>Screenshot:</span>
