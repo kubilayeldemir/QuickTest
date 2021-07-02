@@ -10,14 +10,14 @@ Vue.use(require('vue-moment'));
 
 
 const router = new Router({
-  mode: 'history',
-  base: __dirname,
-  routes: routes
+    mode: 'history',
+    base: __dirname,
+    routes: routes
 });
 
 
 new Vue({
-  render: h => h(App),
-  store,
-  router:router
+    render: h => h(App),
+    store,
+    router: router
 }).$mount('#app')
