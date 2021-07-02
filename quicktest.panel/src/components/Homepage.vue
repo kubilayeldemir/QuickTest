@@ -1,5 +1,6 @@
 <script>
 import TestCase from "@/containers/TestCasePanel";
+
 export default {
   name: "Homepage",
   components: {TestCase}
@@ -11,6 +12,7 @@ export default {
 </style>
 
 <template>
-  <div><p>Hello</p>
-  <test-case></test-case></div>
+  <div>
+    <test-case></test-case>
+  </div>
 </template>

@@ -4,9 +4,12 @@ import store from './store'
 import Router from 'vue-router'
 import {routes} from "@/utils/routes";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import VueExpandableImage from 'vue-expandable-image'
+
 
 Vue.use(Router);
 Vue.use(require('vue-moment'));
+Vue.use(VueExpandableImage)
 
 
 const router = new Router({

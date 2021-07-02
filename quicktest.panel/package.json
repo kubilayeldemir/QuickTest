@@ -12,6 +12,7 @@
     "bootstrap": "^5.0.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-expandable-image": "^0.1.0",
     "vue-moment": "^4.1.0",
     "vue-router": "^3.5.2",
     "vue-status-indicator": "^1.2.1",
