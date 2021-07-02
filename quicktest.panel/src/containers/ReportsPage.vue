@@ -22,18 +22,17 @@
           {{ testcase.testName }}
         </div>
         <p class="text-truncate m-1">{{ testcase.websiteAddress }}</p>
-
       </div>
-      <div class="col-lg-3">
+      <div class="col-12 col-lg-3">
         <ol>
-          <div v-for="step in testcase.steps" :key="step.id">
+          <div class="col-12 col" v-for="step in testcase.steps" :key="step.id">
             <li>{{ step.action }}</li>
           </div>
         </ol>
       </div>
     </div>
     <div class="row mt-5">
-      <div v-for="report in this.reports" :key="report.id" class="col-lg-3">
+      <div v-for="report in this.reports" :key="report.id" class="col-12 col-md-6 col-lg-3">
         <router-link :to="{name:'SingleReportPage',params:{testReport: report,testcase:testcase}}" class="nounderline">
           <report-card :report="report" class=""></report-card>
         </router-link>

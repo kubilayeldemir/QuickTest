@@ -23,8 +23,7 @@ export default {
 
 </style>
 <template>
-  <div :class="report.status ? 'bg-success' : 'bg-danger' " class="card text-white mb-3" style="max-width: 18rem;">
-    <!--    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">-->
+  <div :class="report.status ? 'bg-success' : 'bg-danger' " class="card text-white mb-3 mx-5 mx-lg-0" style="max-width: 100%;">
     <div class="card-header"><span>{{ report.testStartDate | moment('h:mm A YYYY-MM-DD') }}</span></div>
     <div class="card-body">
       <h5 v-if="report.status" class="card-title">Test Passed</h5>
@@ -32,7 +31,6 @@ export default {
       <p class="card-text mb-0">Started at: {{ report.testStartDate | moment('h:mm:ss ') }} </p>
       <p class="card-text mb-0">End at: {{ report.testEndDate | moment('h:mm:ss ') }} </p>
       <p class="card-text mb-0">Took: {{ testDurationSeconds }} seconds </p>
-      <p v-if="!report.status" class="card-text mb-0 text-truncate">{{ report.errorMessage }}</p>
     </div>
   </div>
 </template>
