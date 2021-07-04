@@ -14,5 +14,4 @@ export const routes = [
     {path: '/testcase', component: TestCasePage, name: "TestCasePage", props: true},
     {path: '/report/description', component: SingleReportPage, name: "SingleReportPage", props: true},
     {path: '/testcase/create', component: TestCaseCreatePage, name: "TestCaseCreatePage", props: true}
-
 ]
