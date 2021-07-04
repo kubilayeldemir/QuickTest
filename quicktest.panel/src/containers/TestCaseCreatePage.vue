@@ -8,11 +8,24 @@ export default {
       testcase: {
         active: false,
         critical: false,
-        cycleTimingByMinute: "",
-        testName: "",
-        websiteAddress: "",
+        cycleTimingByMinutes: null,
+        testName: null,
+        websiteAddress: null,
         steps: []
+      },
+      components: [TestStepCreate]
+    }
+  },
+  methods: {
+    addStep() {
+      this.components.push(TestStepCreate)
+    },
+    async saveTestCase() {
+      this.$store.commit("setTestCaseToCreate", this.testcase)
+      for (let i = 0; i < this.$refs.steps.length; i++) {
+        this.$refs.steps[i].commitStep();
       }
+      await this.$store.dispatch("saveTestCase")
     }
   },
   name: "TestCaseCreatePage"
@@ -49,13 +62,24 @@ export default {
     </div>
     <div class="form-group col-md-4 mt-3">
       <label for="inputState">How Often your TestCase should run?</label>
-      <select id="inputState" v-model="testcase.cycleTimingByMinute" class="form-control">
+      <select id="inputState" v-model="testcase.cycleTimingByMinutes" class="form-control">
         <option selected value="Every10Min">Run Every 10 Minutes</option>
         <option selected value="Every30Min">Run Every 30 Minutes</option>
         <option selected value="EveryHour">Run Every Hour</option>
       </select>
     </div>
-    <test-step-create></test-step-create>
+    <hr/>
+    <component
+        :is="component"
+        v-for="(component, index) in components"
+        :key="index"
+        ref="steps"
+    />
+    <button class="btn btn-info" type="button" @click="addStep">Add New Step</button>
+    <br>
+    <br>
+    <button class="btn btn-success" type="button" @click="saveTestCase">Save TestCase</button>
+    <div class="row" style="height: 10em"></div>
   </div>
 </template>
 
