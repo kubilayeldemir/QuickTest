@@ -26,7 +26,7 @@ public class TestReport {
     @Column(name = "status")
     private boolean status;
 
-    @Column(name = "errorMessage")
+    @Column(name = "errorMessage",length = 9999)
     private String errorMessage;
 
     @Column(name = "logFileURL")

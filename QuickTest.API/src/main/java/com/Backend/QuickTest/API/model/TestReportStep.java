@@ -22,7 +22,7 @@ public class TestReportStep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long reportStepId;
 
-    @Column(name = "stepDescription")
+    @Column(name = "stepDescription",length = 9999)
     private String stepDescription;
 
     @NotNull
