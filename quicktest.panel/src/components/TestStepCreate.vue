@@ -1,7 +1,8 @@
 <template>
-  <div class="bg-light ps-3">
-    <div class="form-group col-md-4 mt-3">
-      <div class="form-group">
+  <div class="bg-light ps-3 mb-2 border border-primary">
+    <span class="m-0 fw-bold border border-primary">{{ step.stepNumber }}</span>
+    <div class="form-group col-md-4 mt-1">
+      <div class="form-group w-25">
         <label for="stepNumber">Step Number:</label>
         <input id="stepNumber" v-model.number="step.stepNumber" class="form-control" placeholder="-999...999"
                type="number">
