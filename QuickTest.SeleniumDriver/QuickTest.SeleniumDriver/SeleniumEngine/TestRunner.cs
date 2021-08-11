@@ -4,6 +4,7 @@ using DataAccess.Models;
 using DataAccess.Models.Enums;
 using DataAccess.Repositories;
 using OpenQA.Selenium;
+using QuickTest.SeleniumDriver.SeleniumEngine.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,9 @@ using System.Threading.Tasks;
 namespace QuickTest.SeleniumDriver.SeleniumEngine
 {
     public class TestRunner:ITestRunner
-    {        
-        private void RunTestStep(IWebDriver driver, Step step)
-        {
-
-        }
+    {
         public async  Task<TestReport> RunTestAsync(Testcase testCase)
-        {
-            
+        {            
             var driver = new DriverFactory().createWebDriver();
 
             bool isError = false;
@@ -31,6 +27,9 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
             testReport.status = true;
             testReport.testStartDate = DateTime.Now;
             var sortedSteps = testCase.steps.OrderBy(x => x.stepNumber);
+
+            ICommandFactory commandFactory = new CommandFactory(driver);
+
             foreach (Step step in sortedSteps)
             {
                 var testStep = new ReportStep();
@@ -39,44 +38,9 @@ namespace QuickTest.SeleniumDriver.SeleniumEngine
                 testStep.stepDate = DateTime.Now;
                 testStep.stepDescription = step.ToString();
                 try
-                {                    
-                    switch (step.action)
-                    {
-                        case TestAction.GoTo:
-                            driver.Navigate().GoToUrl(step.actionText);
-                            break;
-                        case TestAction.Click:
-                            By by;
-                            if (step.by == FindElementBy.ClassName)
-                            {
-                                by = By.ClassName(step.elementAddress);
-                            }
-                            else if (step.by == FindElementBy.Xpath)
-                            {
-                                by = By.XPath(step.elementAddress);
-                            }
-                            else
-                            {
-                                by = By.Id(step.elementAddress);
-                            }
-                            driver.FindElement(by).Click();
-                            break;
-                        case TestAction.SendText:
-                            if (step.by == FindElementBy.ClassName)
-                            {
-                                by = By.ClassName(step.elementAddress);
-                            }
-                            else if (step.by == FindElementBy.Xpath)
-                            {
-                                by = By.XPath(step.elementAddress);
-                            }
-                            else
-                            {
-                                by = By.Id(step.elementAddress);
-                            }
-                            driver.FindElement(by).SendKeys(step.actionText);
-                            break;
-                    }
+                {
+                    ICommand command = commandFactory.getCommand(step);
+                    command.Execute();
                     testStep.status = true;
                 }
                 catch (Exception e)
